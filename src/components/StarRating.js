@@ -1,13 +1,14 @@
 import { useState } from 'react';
 import Star from './Star';
 
+
 const StarRating = ({ value }) => {
    //initial values
    const [rating, setRating] = useState(parseInt(value) || 0);
    const [selection, setSelection] = useState(0);
  
    //updating selected star according to hover
-   const hoverOver = event => {
+   const hoverStar = event => {
      let val = 0;
      if (event && event.target && event.target.getAttribute('data-star-id')) {
       val = event.target.getAttribute('data-star-id');
@@ -18,11 +19,10 @@ const StarRating = ({ value }) => {
 
 
    return (
-      <>
      <div
-       onMouseOut={() => hoverOver(null)}
+       onMouseOut={() => hoverStar(null)}
        onClick={e => setRating(e.target.getAttribute('data-star-id') || rating)}
-       onMouseOver={hoverOver}
+       onMouseOver={hoverStar}
        className='star-rating'
      >
        {Array.from({ length: 5 }, (item, idx) => (
@@ -33,7 +33,6 @@ const StarRating = ({ value }) => {
          />
        ))}
      </div>
-     </>
    );
  };
 
